@@ -3,8 +3,7 @@ using namespace std;
 class Solution {
   public:
     
-    int solve(vector<vector<int>> mat,int n,int m,
-    int& maxi,int i,int j)
+    int solve(vector<vector<int>> mat,int n,int m,int& maxi,int i,int j)
     {
         if(i>=n || j>=m)
             return 0;
@@ -23,8 +22,8 @@ class Solution {
             return 0;
     }
     
-    int solveMem(vector<vector<int>>& mat,int n,int m,
-    int i,int j,vector<vector<int>>& dp,int& maxi)
+    int solveMem(vector<vector<int>>& mat,int n,int m,int i,int j,
+            vector<vector<int>>& dp,int& maxi)
     {
         if(i>=n || j>=m)
             return 0;
@@ -46,8 +45,7 @@ class Solution {
             return dp[i][j]=0;
     }
     
-    int solveTab(vector<vector<int>>& mat,int n,int m,
-                                    int& maxi)
+    int solveTab(vector<vector<int>>& mat,int n,int m,int& maxi)
     {
         vector<vector<int>> dp(n+1,vector<int>(m+1,0));
         for(int i=n-1;i>=0;i--)
