@@ -1,6 +1,13 @@
 #include<iostream>
 #include<vector>
 using namespace std;
+/*
+        Another solution is Catalan numbers
+        formula-->>
+            (2n)!
+        --------------
+          (n+1)! * n!
+*/
 class Solution {
 public:
 
