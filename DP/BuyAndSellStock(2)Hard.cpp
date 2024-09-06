@@ -59,12 +59,12 @@ public:
     int solveTab(vector<int>& prices)
     {
         int n=prices.size();
-        vector<vector<vector<int>>> dp(n,vector<vector<int>>(2,vector<int>(3,0)));
+        vector<vector<vector<int>>> dp(n+1,vector<vector<int>>(2,vector<int>(3,0)));
         for(int index=n-1;index>=0;index--)
         {
             for(int buy=0;buy<=1;buy++)
             {
-                for(int limit=2;limit>=0;limit--)
+                for(int limit=1;limit<=2;limit++)
                 {
                     int profit=0;
                     if(buy)
@@ -77,7 +77,7 @@ public:
                     else
                     {
                         profit=max(
-                            prices[index]+dp[index+1][1][limit+1],
+                            prices[index]+dp[index+1][1][limit-1],
                             0+dp[index+1][0][limit]
                         );
                     }
@@ -85,7 +85,7 @@ public:
                 }
             }
         }
-        return dp[0][1][0];
+        return dp[0][1][2];
     }
 
     int solveOpt(vector<int>& prices)
@@ -97,7 +97,7 @@ public:
         {
             for(int buy=0;buy<=1;buy++)
             {
-                for(int limit=2;limit>=0;limit--)
+                for(int limit=1;limit<=2;limit++)
                 {
                     int profit=0;
                     if(buy)
@@ -110,7 +110,7 @@ public:
                     else
                     {
                         profit=max(
-                            prices[index]+next[1][limit+1],
+                            prices[index]+next[1][limit-1],
                             0+next[0][limit]
                         );
                     }
@@ -119,14 +119,16 @@ public:
             }
             next=curr;
         }
-        return next[1][0];
+        return next[1][2];
     }
 
     int maxProfit(vector<int>& prices) {
         int n=prices.size();
         // return solve(0,prices,1,0);
-        vector<vector<vector<int>>> dp(n,vector<vector<int>>(2,vector<int>(3,-1)));
-        return solveMem(0,prices,1,0,dp);
+        // vector<vector<vector<int>>> dp(n,vector<vector<int>>(2,vector<int>(3,-1)));
+        // return solveMem(0,prices,1,0,dp);
+        // return solveTab(prices);
+        return solveOpt(prices);
         // TLE
 
         // map<pair<int,int>,int> m;
