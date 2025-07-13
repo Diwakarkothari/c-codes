@@ -4,6 +4,7 @@ using namespace std;
 class Solution {
 public:
 
+    // no need to backtrack as we are changing in the copy of string not in the orignal
     void solve(string s,vector<string>& ans,int i)
     {
         if (i == s.length()) 
